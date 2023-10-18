@@ -6,7 +6,7 @@ $ cat /etc/os-release
 ```shell
 $ hostnamectl 
 ```
-<br>
+  <br>
 ### LINUX 커널 버전 확인
 ```shell
 $ uname -a
