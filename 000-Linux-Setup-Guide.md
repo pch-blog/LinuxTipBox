@@ -18,6 +18,29 @@ CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본적인 설정 리�
 - "nmtui" 실행하여 IP 입력 및 인터페이스 활성화 
 <br>
 
+## 시간 동기화 (rdate 사용X)
+### 1. TIMEZONE 확인 및 변경
+```shell
+# timedatectl
+# timedatectl set-timezone Asia/Seoul
+```
+### 2. NTP 서버 변경
+```shell
+# vi /etc/chrony.conf
+```
+- "pool kr.pool.ntp.org iburst" 추가 후 저장
+### 3. 서비스 재시작
+```shell
+#systemctl stop chronyd
+#systemctl start chronyd
+```
+### 4. 메인보드 시간 동기화
+```shell
+#hwclock -w
+#hwclock -v
+```
+<br>
+
 ## SSH 설정
 ### 1. 포트 변경 및 root 계정 접속제한
  ```shell
