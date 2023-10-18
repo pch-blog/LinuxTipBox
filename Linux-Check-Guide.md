@@ -6,12 +6,12 @@ $ cat /etc/os-release
 ```shell
 $ hostnamectl 
 ```
-  
+
 ### LINUX 커널 버전 확인
 ```shell
 $ uname -a
 ```
-  
+
 ### 메모리 확인
 ```shell
 $ cat /proc/meminfo | grep MemTotal
@@ -31,4 +31,3 @@ $ df -h
 $ du -h "파일"
 $ du -hs "디렉토리" 
 ```
-
