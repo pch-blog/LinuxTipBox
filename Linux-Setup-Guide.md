@@ -2,8 +2,8 @@
 ### 1. IP 설정 및 인터페이스 활성화 
 - CentOS 또는 RHEL 계열
 ```shell
-# yum install NetworkManager-tui
-# nmtui
+## yum install NetworkManager-tui
+## nmtui
 ```
 - Debian 또는 Ubuntu 계열
 ```shell
