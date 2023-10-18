@@ -9,8 +9,7 @@
 ```shell
 # apt-get install network-manager
 # nmtui
-```
-<br><br/>
+```<br/>
 ## SSH 설정
 ### 1. 포트 변경 및 root 계정 접속제한
  ```shell
