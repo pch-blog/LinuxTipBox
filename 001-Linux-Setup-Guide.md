@@ -38,11 +38,3 @@
 또는
 # service sshd restart
 ```
-
-# 기타 설정 및 확인
-### 1. 운영체제 버전 확인
-```shell
-$ cat /etc/os-release
-또는
-$ hostnamectl 
-```
