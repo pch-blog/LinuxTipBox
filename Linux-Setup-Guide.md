@@ -1,4 +1,4 @@
-# Network 설정
+## Network 설정
 ### 1. IP 설정 및 인터페이스 활성화
 - CentOS 또는 RHEL 계열
 ```shell
@@ -11,7 +11,7 @@
 # nmtui
 ```
 <br><br/>
-# SSH 설정
+## SSH 설정
 ### 1. 포트 변경 및 root 계정 접속제한
  ```shell
  # vi /etc/ssh/sshd_config
