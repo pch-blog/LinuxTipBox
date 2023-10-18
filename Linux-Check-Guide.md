@@ -1,3 +1,7 @@
+~~~
+LINUX 서버의 정보 및 상태를 확인하기위해 필요한 명령어 리스트
+~~~
+
 ### LINUX 배포판 확인
 ```shell
 $ cat /etc/os-release
