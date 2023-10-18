@@ -35,6 +35,8 @@
 ### 3. 서비스 재시작
 ```shell
 # systemctl restart sshd.service
+```
 또는
+```shell
 # service sshd restart
 ```
