@@ -2,8 +2,9 @@
 LINUX의 기타 설정을 위한 페이지 입니다. 
 ~~~
 
-## XShell 구버전 사용, "key exchange" 오류
+## 시스템 전체 암호화 정책을 이전 릴리스와 호환되는 모드로 전환
 - XShell 구버전을 사용하여 LINUX 서버에 SSH 로그인시 "key exchange" 오류
+- RHEL, CentOS 8 이후부터 변경
 ```shell
 # update-crypto-policies --set LEGACY
 ```
