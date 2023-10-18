@@ -46,6 +46,16 @@
 ```shell
 # adduser "계정명"
 ```
+- useradd : 사용자의 홈 디렉토리를 자동으로 생성안함, 모든 설정을 명시
+- adduser : 사용자의 홈 디렉토리를 자동으로 생성함
+#### 1-1. 계정 삭제
+```shell
+# userdel -r "계정명"
+```
+또는
+```shell
+# deluser --remove-home "계정명"
+```
 ### 2. 계정 패스워드 설정
 ```shell
 # adduser "계정명"
