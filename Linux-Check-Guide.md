@@ -2,7 +2,7 @@
 LINUX 서버의 정보 및 상태를 확인하기위해 필요한 명령어 리스트
 ~~~
 
-### LINUX 배포판 확인
+## LINUX 배포판 확인
 ```shell
 $ cat /etc/os-release
 ```
@@ -12,13 +12,13 @@ $ hostnamectl
 ```
 <br>
 
-### LINUX 커널 버전 확인
+## LINUX 커널 버전 확인
 ```shell
 $ uname -a
 ```
 <br>
 
-### 메모리 확인
+## 메모리 확인
 ```shell
 $ cat /proc/meminfo | grep MemTotal
 ```
@@ -28,13 +28,13 @@ $ free -h
 ```
 <br>
 
-### 디스크 확인 
+## 디스크 확인 
 ```shell
 $ df -h
 ```
 <br>
 
-### 파일 및 디렉토리 용량 확인
+## 파일 및 디렉토리 용량 확인
 ```shell
 $ du -h "파일"
 $ du -hs "디렉토리" 
