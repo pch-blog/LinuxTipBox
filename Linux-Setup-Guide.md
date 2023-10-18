@@ -1,0 +1,48 @@
+# Network 설정
+### 1. IP 설정 및 인터페이스 활성화
+- CentOS 또는 RHEL 계열
+```shell
+# yum install NetworkManager-tui
+# nmtui
+```
+- Debian 또는 Ubuntu 계열
+```shell
+# apt-get install network-manager
+# nmtui
+```
+
+# SSH 설정
+### 1. 포트 변경 및 root 계정 접속제한
+ ```shell
+ # vi /etc/ssh/sshd_config
+ ```
+- root 계정 접속 차단을 위해 "PermitRootLogin"를 no로 설정
+- "Port 포트번호"를 원하는 포트로 변경 (주석처리되어 있다면 주석을 풀고 처리)
+
+### 2. SELINUX 및 방화벽 포트 허용
+- SELINUX 포트 허용 및 확인
+```shell
+# semanage port -a -t ssh_port_t -p tcp 1234
+# semanage port -l | grep ssh_port_t
+```
+
+- 방화벽 포트 허용 및 확인
+```shell
+# firewall-cmd --permanent --zone=public --add-port=1234/tcp
+# fierwall-cmd --reload; firewall-cmd --list-all
+```
+
+### 3. 서비스 재시작
+```shell
+# systemctl restart sshd.service
+또는
+# service sshd restart
+```
+
+# 기타 설정 및 확인
+### 1. 운영체제 버전 확인
+```shell
+$ cat /etc/os-release
+또는
+$ hostnamectl 
+```
