@@ -1,5 +1,5 @@
 ## Network 설정
-### 1. IP 설정 및 인터페이스 활성화
+### 1. IP 설정 및 인터페이스 활성화 
 - CentOS 또는 RHEL 계열
 ```shell
 # yum install NetworkManager-tui
@@ -10,6 +10,7 @@
 # apt-get install network-manager
 # nmtui
 ```
+- "nmtui" 실행하여 IP 입력 및 인터페이스 활성화 
 <br>
 
 ## SSH 설정
