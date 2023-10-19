@@ -1,5 +1,5 @@
 ~~~
-CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본적인 설정 리스트
+CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본 설정 리스트
 ~~~
 <br>
 
