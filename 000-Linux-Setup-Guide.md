@@ -10,12 +10,17 @@ CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본적인 설정 리�
 # yum install NetworkManager-tui
 # nmtui
 ```
-- Debian 또는 Ubuntu 계열
-```shell
-# apt-get install network-manager
-# nmtui
-```
 - "nmtui" 실행하여 IP 입력 및 인터페이스 활성화 
+<br>
+
+## 배포판 업데이트
+```shell
+# yum update
+```
+또는
+```shell
+# yum update
+```
 <br>
 
 ## 시간 동기화 (rdate 사용X)
