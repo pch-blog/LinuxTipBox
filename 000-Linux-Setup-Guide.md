@@ -5,12 +5,14 @@ CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본적인 설정 리�
 
 ## Network 설정
 ### 1. IP 설정 및 인터페이스 활성화 
-- CentOS 또는 RHEL 계열
+- "nmtui"로 IP 설정 및 인터페이스 활성화  
 ```shell
-# yum install NetworkManager-tui
 # nmtui
 ```
-- "nmtui" 실행하여 IP 입력 및 인터페이스 활성화 
+- "nmtui"가 없을 경우 설치
+```shell
+# yum install NetworkManager-tui
+```
 <br>
 
 ## 배포판 업데이트
