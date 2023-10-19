@@ -18,4 +18,12 @@ LINUX의 기타 설정을 위한 페이지 입니다.
 - home 영역의 파티션을 줄이거나 삭제 후 root 영역 확장하는 방식으로 해결
 - 참고링크1 : https://nakanara.tistory.com/261
 - 참고링크2 : https://joonyon.tistory.com/entry/CentOS7-LVM-home-%ED%81%AC%EA%B8%B0-%EB%8C%80%EC%8B%A0-root-%ED%81%AC%EA%B8%B0-%EB%8A%98%EB%A6%AC%EA%B8%B0
-  
+<br>
+
+## 리눅스 서버 웹 콘솔 사용
+```shell
+# systemctl enable --now cockpit.socket
+```
+- https://localhost:9090 또는 https://"IP":9090 로 접속
+- 참고링크1 : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_systems_using_the_rhel_8_web_console/getting-started-with-the-rhel-8-web-console_system-management-using-the-rhel-8-web-console#logging-in-to-the-web-console_getting-started-with-the-rhel-8-web-console
+<br>
