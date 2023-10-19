@@ -29,6 +29,7 @@ CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본적인 설정 리�
 <br>
 
 ## 호스트명 변경 및 확인
+- 기준 및 필요에 따라 호스트명 지정
 ```shell
 # hostnamectl set-hostname "호스트명"
 # hostname
