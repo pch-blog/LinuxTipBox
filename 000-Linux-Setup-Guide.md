@@ -28,14 +28,6 @@ CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본 설정 리스트
 ```
 <br>
 
-## 호스트명 변경 및 확인
-- 기준 및 필요에 따라 호스트명 지정
-```shell
-# hostnamectl set-hostname "호스트명"
-# hostname
-```
-<br>
-
 ## 시간 동기화 (rdate 사용X)
 ### 1. TIMEZONE 확인 및 변경
 ```shell
@@ -112,4 +104,12 @@ CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본 설정 리스트
 ```
 - su (Switch User) : 작업 디렉토리 및 환경 변수를 현재 사용자 기준으로 사용자 전환
 - su - (Switch User with Environment) : 작업 디렉토리 및 환경 변수를 전환하려는 사용자 기준으로 사용자 전환
+<br>
+
+## 호스트명 변경 및 확인
+- 기준 및 필요에 따라 호스트명 지정
+```shell
+# hostnamectl set-hostname "호스트명"
+# hostname
+```
 <br>
