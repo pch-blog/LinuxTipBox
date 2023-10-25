@@ -37,12 +37,12 @@
 ```shell
 # tar -zcvf /home.tar.gz -C /home 
 ```
-- 불륨 삭제
+- /home 불륨 삭제
 ```shell
 # umount /dev/mapper/rl-home
 # lvremove /dev/mapper/rl-home
 ```
-- 불륨 생성, 포맷, 마운트 (생략하면 삭제한 불륨 전체를 root 확장 가능)
+- /home 불륨 생성, 포맷, 마운트 (생략하면 삭제한 불륨 전체를 root 확장 가능)
 ```shell
 # lvcreate -L 100G
 # mkfs.xfs /dev/mapper/rl-home
