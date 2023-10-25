@@ -51,7 +51,7 @@
 # df -h
 ```
 - root 확장
-  ```shell
+```shell
 # lvextend -r -l +100%FREE /dev/mapper/rl-root
 # df -h
 ```
