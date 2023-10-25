@@ -155,7 +155,7 @@ $ mkdir -p  /migration/zimbra/accounts
 $ cd /migration/zimbra/accounts
 $ zmprov -l gaa | tee -a users.txt
 ```
-- 계정 패스워드 정보 저
+- 계정 패스워드 정보 저장
 ```shell
 $ mkdir -p /migration/zimbra/passwords
 $ cd /migration/zimbra/passwords
@@ -187,7 +187,14 @@ ACCOUNT_DETAILS="../account_details"
 USERS="../accounts/users.txt"
 for i in `cat $USERS`
    do
-givenName=$(grep givenName인
+givenName=$(grep givenName: $ACCOUNT_DETAILS/$i.txt | cut -d ":" -f2)
+displayName=$(grep displayName: $ACCOUNT_DETAILS/$i.txt | cut -d ":" -f2)
+shadowpass=$(cat $PASSWDS/$i.shadow)
+zmprov ca $i "TeMpPa55^()" cn "$givenName" displayName "$displayName" givenName "$givenName"
+zmprov ma $i userPassword "$shadowpass"
+   done
+==================================================================================
+```
 <br>
 
 ## 참고
