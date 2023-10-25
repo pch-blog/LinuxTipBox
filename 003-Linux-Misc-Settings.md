@@ -22,7 +22,8 @@
 ```shell
 # lvdisplay
 ```
-### 1. 축소 및 확장 (XFS 파일시스템이면 불가능)
+### 1. 축소 및 확장
+- XFS 파일시스템이면 불가능
 ```shell
 # umount /home
 # lvreduce -r -L 100G /dev/mapper/centos-home 
