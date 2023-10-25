@@ -26,9 +26,9 @@
 - XFS 파일시스템이면 불가능
 ```shell
 # umount /home
-# lvreduce -r -L 100G /dev/mapper/centos-home 
-# lvresize -r -l+100%FREE /dev/mapper/centos-root
-# mount /home
+# lvreduce -r -L 100G /dev/mapper/rl-home 
+# lvresize -r -l+100%FREE /dev/mapper/rl-root
+# mount /dev/mapper/rl-home /home
 # df -h
 ```
 ### 2. 불륨 삭제 후 새로 생성
