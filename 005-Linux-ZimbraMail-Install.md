@@ -187,19 +187,7 @@ ACCOUNT_DETAILS="../account_details"
 USERS="../accounts/users.txt"
 for i in `cat $USERS`
    do
-givenName=$(grep givenName: $ACCOUNT_DETAILS/$i.txt | cut -d ":" -f2)
-displayName=$(grep displayName: $ACCOUNT_DETAILS/$i.txt | cut -d ":" -f2)
-shadowpass=$(cat $PASSWDS/$i.shadow)
-zmprov ca $i "TeMpPa55^()" cn "$givenName" displayName "$displayName" givenName "$givenName"
-zmprov ma $i userPassword "$shadowpass"
-   done
-=========================================
-```
-- 계정 정보 로드 shell 실행
-```shell
-$ chmod 777 restore_accounts.sh
-$ ./restore_accounts.sh
-```
+givenName=$(grep givenName인
 <br>
 
 ## 참고
