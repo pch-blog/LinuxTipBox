@@ -236,7 +236,36 @@ zmprov ma $i userPassword "$shadowpass"
 <br>
 
 ## 서버 이관 과정
-- 구 메일 서버 접속 DNS(A Type) 추가 및 기존 DNS 새로운 메일 서버 IP로 변경
+- 기존 DNS(A Type)를 새로운 메일 서버 IP로 변경
+- 구 메일 서버에 접속 및 유지를 위해 DNS(A Type) 추가 (ex. mail2.xxxx.co.kr, 등)
+- 새로운 메일 서버와 구 메일 서버에서 zimbra 중지 및 확인
+```shell
+$ su - zimbra
+$ zmcontrol stop
+$ ps -ef | grep -i zimbra
+$ kill -9 <pid>
+```
+- 각 서버의 변경된 도메인으로 호스트 파일 수정
+```shell
+# vi /etc/hosts
+  => IP주소 mail.xxxx.co.kr mail
+```
+- 각 서버의 HOSTNAME 변경
+```shell
+# hostnamectl set-hostname mail.xxxx.co.kr
+# hostname
+```
+- Zimbra의 HOSTNAME 변경
+```shell
+# zmhostname mail.xxxx.co.kr
+```
+- zimbra 시작
+```shell
+$ su - zimbra
+$ zmcontrol start
+```
+- 웹페이지 접속 확인
+- 자체 인증서 관리자 페이지에서 다시 인스톨
 <br>
 
 ## 각각 사용자의 로컬PC를 통한 백업 및 로드 과정
