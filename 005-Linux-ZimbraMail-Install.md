@@ -1,3 +1,4 @@
+# 005-Linux-ZimbraMail-Install.md
 ~~~
 - Zimbra 메일 서버 설치 과정
 - OS : Rocky Linux 8.8
@@ -139,6 +140,7 @@ $ zmprov getServer mail.xxxx.co.kr | grep zimbraRemoteManagementPort
 <br>
 
 # 계정 백업 및 로드
+
 ### 1. 현재 메일 서버에서 계정 정보 백업
 - 백업 디렉토리 생성
 ```shell
