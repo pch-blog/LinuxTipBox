@@ -60,7 +60,8 @@ $ tar -zxvf zcs-8.8.15_GA_4362.RHEL8_64.20220721104405.tgz
 ```
 <br>
 
-## 설치 및 설정 과정
+## 설치 및 제거 과정
+### 1. 설치 및 설정 과정
 - 설치 shell 실행
 ```shell
 # cd zcs-8.8.15_GA_4362.RHEL8_64.20220721104405
@@ -101,6 +102,37 @@ $ zmcontrol -v      => 버전 확인
 ```
 - 메일 웹페이지 : https://mail.xxxx.co.kr
 - 관리자 웹페이지 : https://mail.xxxx.co.kr:7071
+### 2. 제거
+- Zimbra 종료
+```shell
+$ su - zimbra
+$ zmcontrol stop
+$ exit
+```
+- Zimbra 프로세스 확인
+```shell
+# ps -ef | grep -i zimbra
+# kill -9 <pid>
+```
+- 설치 shell에 인자로 "-u" 입력 후 실행 
+```shell
+# cd zcs-8.8.15_GA_4362.RHEL8_64.20220721104405
+# ./install.sh -u
+```
+- Zimbra 계정 삭제
+```shell
+# userdel zimbra
+```
+- 디렉토리 삭제
+```shell
+# rm -rf /opt/zimbra
+# rm -rf /var/log/*zimbra*
+# rm -rf /tmp/*zimbra*
+# rm -rf /tmp/hsperfdata*
+# rm -rf /tmp/install.*
+# rm -rf /tmp/*swatch*
+# rm -rf /tmp/log*
+```
 <br>
 
 ## 방화벽
@@ -217,3 +249,4 @@ zmprov ma $i userPassword "$shadowpass"
 - 상단 메뉴 "기본 설정" -> 왼쪽 메뉴 "가져오기/내보내기"
 - 오른쪽 페이지 가져오기에서 내보내기로 다운로드 받은 파일 선택 후 "가져오기" 클릭
 - 완료 팝업 확인
+
