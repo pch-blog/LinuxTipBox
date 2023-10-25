@@ -65,5 +65,5 @@
 # systemctl disable --now cockpit.socket
 ```
 - https://localhost:9090 또는 https://"IP":9090 로 접속
-- 참고링크1 : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_systems_using_the_rhel_8_web_console/getting-started-with-the-rhel-8-web-console_system-management-using-the-rhel-8-web-console#logging-in-to-the-web-console_getting-started-with-the-rhel-8-web-console
+- 참고 : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_systems_using_the_rhel_8_web_console/getting-started-with-the-rhel-8-web-console_system-management-using-the-rhel-8-web-console#logging-in-to-the-web-console_getting-started-with-the-rhel-8-web-console
 <br>
