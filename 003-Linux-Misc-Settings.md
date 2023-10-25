@@ -47,8 +47,6 @@
 # lvcreate -L 100G
 # mkfs.xfs /dev/mapper/rl-home
 # mount /dev/mapper/rl-home /home
-# lvextend -r -l +100%FREE /dev/mapper/rl-root
-# df -h
 ```
 - root 확장
 ```shell
