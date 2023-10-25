@@ -42,14 +42,11 @@
 # umount /dev/mapper/rl-home
 # lvremove /dev/mapper/rl-home
 ```
-- 불륨 생성, 포맷, 마운
+- 불륨 생성, 포맷, 마운트 및 root 확장
 ```shell
 # lvcreate -L 100G
 # mkfs.xfs /dev/mapper/rl-home
 # mount /dev/mapper/rl-home /home
-```
-- 남은 용량 root 파티션 확장
-```shell
 # lvextend -r -l +100%FREE /dev/mapper/rl-root
 # df -h
 ```
