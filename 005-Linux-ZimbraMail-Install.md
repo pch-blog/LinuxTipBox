@@ -138,6 +138,68 @@ $ zmprov getServer mail.xxxx.co.kr | grep zimbraRemoteManagementPort
 - 인증서 유효성 확인 날 : 3650 입력 후 설치
 <br>
 
+# 계정 백업 및 로드
+### 1. 현재 메일 서버에서 계정 정보 백업
+- 백업 디렉토리 생성
+```shell
+# mkdir -p /migration/zimbra
+# chmod -R 777 /migration/zimbra
+# chown -R zimbra:zimbra /migration/zimbra
+# su - zimbra
+```
+- 계정 정보 저장
+```shell
+$ mkdir -p  /migration/zimbra/accounts
+$ cd /migration/zimbra/accounts
+$ zmprov -l gaa | tee -a users.txt
+```
+- 계정 패스워드 정보 저
+```shell
+$ mkdir -p /migration/zimbra/passwords
+$ cd /migration/zimbra/passwords
+$ for user in `cat ../accounts/users.txt`; do zmprov -l ga $user userPassword | grep userPassword: | awk '{ print $2}' | tee -a $user.shadow; done
+```
+
+### 2. 새로운 메일 서버에 계정 정보 로드
+- 백업 디렉토리 생성
+```shell
+# mkdir -p /migration/zimbra
+# chmod -R 777 /migration/zimbra
+# chown -R zimbra:zimbra /migration/zimbra
+# su - zimbra
+```
+- 백업한 현재 메일 서버 계정 정보 복사
+```shell
+$ cd /migration/zimbra
+$ scp -rp zimbra@xxx.xxx.xxx.xxx:/migration/zimbra/* . (-P 포트번호)
+```
+- 계정 정보 로드 shell 생성
+```shell
+$ mkdir -p /migration/zimbra/scripts
+$ cd /migration/zimbra/scripts
+$ vi restore_accounts.sh
+==================================================================================
+#!/bin/bash
+PASSWDS="../passwords"
+ACCOUNT_DETAILS="../account_details"
+USERS="../accounts/users.txt"
+for i in `cat $USERS`
+   do
+givenName=$(grep givenName: $ACCOUNT_DETAILS/$i.txt | cut -d ":" -f2)
+displayName=$(grep displayName: $ACCOUNT_DETAILS/$i.txt | cut -d ":" -f2)
+shadowpass=$(cat $PASSWDS/$i.shadow)
+zmprov ca $i "TeMpPa55^()" cn "$givenName" displayName "$displayName" givenName "$givenName"
+zmprov ma $i userPassword "$shadowpass"
+   done
+=========================================
+```
+- 계정 정보 로드 shell 실행
+```shell
+$ chmod 777 restore_accounts.sh
+$ ./restore_accounts.sh
+```
+<br>
+
 ## 참고
 - 설치과정 : https://foxydog.tistory.com/132
 - 계정백업 과정 : https://blog.renu.ac.ug/index.php/2021/01/24/migrating-from-zimbra-to-zimbra-zcs-to-zcs/
@@ -146,7 +208,7 @@ $ zmprov getServer mail.xxxx.co.kr | grep zimbraRemoteManagementPort
 
 ## 서버 이관 과정
 - 구 메일 서버 접속 DNS(A Type) 추가 및 기존 DNS 새로운 메일 서버 IP로 변경
-- 
+<br>
 
 ## 각각 사용자의 로컬PC를 통한 백업 및 로드 과정
 ### 1. 내보내기
