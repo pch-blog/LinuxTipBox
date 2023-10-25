@@ -1,3 +1,4 @@
+# 002-Linux-Error-Guide.md
 ~~~
 LINUX 설치 후 에러 기타 에러 처리
 ~~~
