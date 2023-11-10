@@ -13,7 +13,7 @@ $ ulimit -a
 ```shell
 $ ulimit -aH
 ```
--core file size : 코어파일의 최대크기
+- core file size : 코어파일의 최대크기
 - data seg size : 프로세스의 데이터 세그먼트 최대크기
 - scheduling priority : 쉘에서 생성되는 파일의 최대 크기
 - max memory size : resident set size의 최대 크기(메모리 최대크기)
