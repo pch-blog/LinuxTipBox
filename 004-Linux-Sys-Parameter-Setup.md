@@ -10,8 +10,9 @@
 ```shell
 # /etc/security/limits.conf
 ```
-- 내용 추가
+- nofile에 대한 값 추가
 ```shell
+#<domain>       <type>  <item>         <value>
 *                soft    nofile          102400
 *                hard    nofile          102400
 ```
