@@ -68,3 +68,10 @@
 - https://localhost:9090 또는 https://"IP":9090 로 접속
 - 참고 : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_systems_using_the_rhel_8_web_console/getting-started-with-the-rhel-8-web-console_system-management-using-the-rhel-8-web-console#logging-in-to-the-web-console_getting-started-with-the-rhel-8-web-console
 <br>
+
+## 노트북, 리눅스 조합 크램쉘 모드 설
+```shell
+# vi /etc/systemd/logind.conf
+```
+- "HandleLidSwitch" 항목의 주석을 제거하고 값을 ignore로 변경
+<br>
