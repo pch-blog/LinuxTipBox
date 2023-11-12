@@ -2,9 +2,10 @@
 <br>
 
 ## ulimit : Open Files 설정 
+- unlimited로 설정하면 부팅 불가, SSH 연결 불가, 연결 상태의 터미널에서 다른 계정 로그인 불가(root 포함)
 - 즉시 설정
 ```shell
-# ulimit -SHn 65535
+# ulimit -SHn 102400
 ```
 - 영구 설정
 ```shell
@@ -18,3 +19,31 @@
 ```
 <br>
 
+## ulimit : Max User Processes 설정1
+- 즉시 설정
+```shell
+# ulimit -SHu unlimited
+```
+- 영구 설정
+```shell
+# /etc/security/limits.conf
+```
+- nproc에 대한 값 추가
+```shell
+#<domain>       <type>  <item>         <value>
+*                soft    nproc         unlimited
+*                hard    nproc         unlimited
+```
+<br>
+
+## ulimit : Max User Processes 설정2
+- 설정1로 변경이 안될 경우
+```shell
+# /etc/security/limits.d/20-nproc.conf
+```
+- nproc에 대한 값 변경
+```shell
+*          soft    nproc     unlimited
+root       soft    nproc     unlimited
+```
+<br>
