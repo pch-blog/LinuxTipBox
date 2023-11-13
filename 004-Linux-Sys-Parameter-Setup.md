@@ -17,6 +17,7 @@
 *                soft    nofile          102400
 *                hard    nofile          102400
 ```
+- 저장 후 터미널 재접속
 <br>
 
 ## ulimit : Max User Processes 설정1
@@ -34,6 +35,7 @@
 *                soft    nproc         unlimited
 *                hard    nproc         unlimited
 ```
+- 저장 후 터미널 재접속
 <br>
 
 ## ulimit : Max User Processes 설정2
@@ -46,4 +48,5 @@
 *          soft    nproc     unlimited
 root       soft    nproc     unlimited
 ```
+- 저장 후 터미널 재접속
 <br>
