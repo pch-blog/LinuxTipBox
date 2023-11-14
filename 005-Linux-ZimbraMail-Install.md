@@ -229,6 +229,23 @@ zmprov ma $i userPassword "$shadowpass"
 ```
 <br>
 
+## 재부팅 후 zimbra 실행 안되는 경우 (완벽한 해결법은 아닌듯)
+- "/var/log/messages"나 "/var/log/secure"에서 아래 내용 확인 (grep 등 활용)
+```shell
+/etc/rc.d/init.d/zimbra: line 41: /usr/bin/su: Permission denied
+```
+- SELINUX를 disabled 설정 후 재부팅해서 zimbra 정상 실행 확인
+```shell
+# vi /etc/selinux/config
+SELINUX=disabled
+```
+- SELINUX 다시 활성화 후 재부팅하여 zimbra 정상 실행 확인
+```shell
+# vi /etc/selinux/config
+SELINUX=enforcing
+```
+<br>
+
 ## 참고
 - 설치과정 : https://foxydog.tistory.com/132
 - 계정백업 과정 : https://blog.renu.ac.ug/index.php/2021/01/24/migrating-from-zimbra-to-zimbra-zcs-to-zcs/
