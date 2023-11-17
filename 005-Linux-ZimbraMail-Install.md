@@ -272,9 +272,10 @@ $ kill -9 <pid>
 # hostnamectl set-hostname mail.xxxx.co.kr
 # hostname
 ```
-- Zimbra의 HOSTNAME 변경
+- Zimbra의 SERVER NAME 변경
 ```shell
-# zmhostname mail.xxxx.co.kr
+# /opt/zimbra/libexec/zmsetservername -n mail.xxxx.co.kr
+$ zmhostname
 ```
 - zimbra 시작
 ```shell
