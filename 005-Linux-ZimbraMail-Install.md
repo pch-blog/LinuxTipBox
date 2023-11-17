@@ -274,6 +274,7 @@ $ kill -9 <pid>
 ```
 - CentOS 6.3 기준 HOSTNAME 변경
 ```shell
+# hostname mail.xxxx.co.kr
 # vi /etc/sysconfig/network
 # /etc/init.d/network restart
 ```
