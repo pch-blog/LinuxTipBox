@@ -272,11 +272,16 @@ $ kill -9 <pid>
 # hostnamectl set-hostname mail.xxxx.co.kr
 # hostname
 ```
+- CentOS 6.3 기준 HOSTNAME 변경
+```shell
+# vi /etc/sysconfig/network
+# /etc/init.d/network restart
+```
 - Zimbra의 SERVER NAME 변경
 ```shell
-# /opt/zimbra/libexec/zmsetservername -n mail.xxxx.co.kr
-$ su - zimbra
+$ /opt/zimbra/libexec/zmsetservername -n mail.xxxx.co.kr
 $ zmhostname
+$ zmcontrol stop
 ```
 - zimbra 시작
 ```shell
