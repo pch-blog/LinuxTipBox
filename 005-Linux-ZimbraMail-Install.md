@@ -275,6 +275,7 @@ $ kill -9 <pid>
 - Zimbra의 SERVER NAME 변경
 ```shell
 # /opt/zimbra/libexec/zmsetservername -n mail.xxxx.co.kr
+$ su - zimbra
 $ zmhostname
 ```
 - zimbra 시작
