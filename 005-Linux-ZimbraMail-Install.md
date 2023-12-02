@@ -14,7 +14,7 @@
 
 ## Linux 설치 후 기본 설정
 - 기본 설정 : https://github.com/namoo33444/LinuxTipBox/blob/main/000-Linux-Setup-Guide.md
-- root 파티션 용량 늘리기 : https://github.com/pch-blog/LinuxTipBox/blob/main/003-Linux-Misc-Settings.md#root-%ED%8C%8C%ED%8B%B0%EC%85%98-%EC%9A%A9%EB%9F%89-%EB%8A%98%EB%A6%AC%EA%B8%B0
+- root 파티션 용량 늘리기 : https://github.com/PCH-GitHub/LinuxTipBox/blob/main/003-Linux-Misc-Settings.md#root-%ED%8C%8C%ED%8B%B0%EC%85%98-%EC%9A%A9%EB%9F%89-%EB%8A%98%EB%A6%AC%EA%B8%B0
 - 상황에 따라 /opt 영역에 대한 파티션 생성 및 마운트 
 <br>
 
