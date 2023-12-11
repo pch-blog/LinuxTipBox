@@ -49,6 +49,14 @@ $ cat /proc/meminfo | grep MemTotal
 ```shell
 $ free -h
 ```
+- [total] : 설치된 총 메모리 크기 / 설정된 스왑 총 크기
+- [used] : total에서 free, buff/cache를 뺀 사용중인 메모리. / 사용중인 스왑 크기
+- [free] : total에서 used와 buff/cahce를 뺀 실제 사용 가능한 여유 있는 메모리량 / 사용되지 않은 스왑 크기
+- [shared] : tmpfs(메모리 파일 시스템), ramfs 등으로 사용되는 메모리. 여러 프로세스에서 사용할 수 있는 공유 메모리
+- [buffers] : 커널 버퍼로 사용중인 메모리
+- [cache] : 페이지 캐시와 slab으로 사용중인 메모리
+- [buff/cache] : 버퍼와 캐시를 더한 사용중인 메모리
+- [available] : swapping 없이 새로운 프로세스에서 할당 가능한 메모리의 예상 크기. (예전의 -/+ buffers/cache이 사라지고 새로 생긴 컬럼)
 <br>
 
 ## 디스크 확인 
