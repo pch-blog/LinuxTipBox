@@ -43,7 +43,7 @@ $ uname -a
 
 ## 메모리 확인
 ```shell
-$ cat /proc/meminfo | grep MemTotal
+$ cat /proc/meminfo | grep Mem
 ```
 또는
 ```shell
