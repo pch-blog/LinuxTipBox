@@ -27,6 +27,7 @@ $ ulimit -aH
 ## LINUX 배포판 확인
 ```shell
 $ cat /etc/os-release
+$ cat /etc/redhat-release
 ```
 또는
 ```shell
