@@ -36,7 +36,7 @@ mail.xxxx.co.kr       A      메일 서버 IP주소     => 메일 서버 웹페�
 # hostname
 ```
 - 호스트 파일 수정
-```shell
+```
 # vi /etc/hosts
   => IP주소 mail.xxxx.co.kr mail 추가
 ```
@@ -44,7 +44,7 @@ mail.xxxx.co.kr       A      메일 서버 IP주소     => 메일 서버 웹페�
 
 ## 호스트 연결 테스트
 - 연결 테스트
-```shell
+```
 $ host -t a mail.xxxx.co.kr
   => mail.xxxx.co.kr has address xxx.xxx.xxx.xx
 $ host -t mx xxxx.co.kr
@@ -54,7 +54,7 @@ $ host -t mx xxxx.co.kr
 <br>
 
 ## Zimbra Collaboration Open Source 8.8.15 다운로드
-```shell
+```
 $ wget https://files.zimbra.com/downloads/8.8.15_GA/zcs-8.8.15_GA_4362.RHEL8_64.20220721104405.tgz
 $ tar -zxvf zcs-8.8.15_GA_4362.RHEL8_64.20220721104405.tgz
 ```
@@ -63,7 +63,7 @@ $ tar -zxvf zcs-8.8.15_GA_4362.RHEL8_64.20220721104405.tgz
 ## 설치 및 제거 과정
 ### 1. 설치 및 설정 과정
 - 설치 shell 실행
-```shell
+```
 # cd zcs-8.8.15_GA_4362.RHEL8_64.20220721104405
 # ./install.sh
 ```
@@ -95,7 +95,7 @@ Moving /tmp/zmsetup.20220926-072118.log to /opt/zimbra/log [세팅 로그]
 Configuration complete - press return to exit [Enter] [최종 완료]
 ```
 - 상태 확인
-```shell
+```
 # su - zimbra
 $ zmcontrol status  => 상태 확인
 $ zmcontrol -v      => 버전 확인
@@ -104,27 +104,27 @@ $ zmcontrol -v      => 버전 확인
 - 관리자 웹페이지 : https://mail.xxxx.co.kr:7071
 ### 2. 제거
 - Zimbra 종료
-```shell
+```
 $ su - zimbra
 $ zmcontrol stop
 $ exit
 ```
 - Zimbra 프로세스 확인
-```shell
+```
 # ps -ef | grep -i zimbra
 # kill -9 <pid>
 ```
 - 설치 shell에 인자로 "-u" 입력 후 실행 
-```shell
+```
 # cd zcs-8.8.15_GA_4362.RHEL8_64.20220721104405
 # ./install.sh -u
 ```
 - Zimbra 계정 삭제
-```shell
+```
 # userdel zimbra
 ```
 - 디렉토리 삭제
-```shell
+```
 # rm -rf /opt/zimbra
 # rm -rf /var/log/*zimbra*
 # rm -rf /tmp/*zimbra*
@@ -137,11 +137,11 @@ $ exit
 
 ## 방화벽
 - 방화벽 허용 등록
-```shell
+```
 # firewall-cmd --permanent --add-port=25/tcp --add-port=587/tcp --add-port=465/tcp --add-port=80/tcp --add-port=443/tcp --add-port=8443/tcp --add-port=7071/tcp --add-port=110/tcp --add-port=995/tcp --add-port=143/tcp --add-port=993/tcp
 ```
 - SSH 포트를 변경했다면 zimbraRemoteManagementPort 항목의 포트도 같은 포트로 변경해야한다.
-```shell
+```
 # su - zimbra
 $ zmprov ms mail.xxxx.co.kr zimbraRemoteManagementPort "포트번호"
 $ zmprov getServer mail.xxxx.co.kr | grep zimbraRemoteManagementPort
@@ -175,20 +175,20 @@ $ zmprov getServer mail.xxxx.co.kr | grep zimbraRemoteManagementPort
 
 ### 1. 현재 메일 서버에서 계정 정보 백업
 - 백업 디렉토리 생성
-```shell
+```
 # mkdir -p /migration/zimbra
 # chmod -R 777 /migration/zimbra
 # chown -R zimbra:zimbra /migration/zimbra
 # su - zimbra
 ```
 - 계정 정보 저장
-```shell
+```
 $ mkdir -p  /migration/zimbra/accounts
 $ cd /migration/zimbra/accounts
 $ zmprov -l gaa | tee -a users.txt
 ```
 - 계정 패스워드 정보 저장
-```shell
+```
 $ mkdir -p /migration/zimbra/passwords
 $ cd /migration/zimbra/passwords
 $ for user in `cat ../accounts/users.txt`; do zmprov -l ga $user userPassword | grep userPassword: | awk '{ print $2}' | tee -a $user.shadow; done
@@ -196,19 +196,19 @@ $ for user in `cat ../accounts/users.txt`; do zmprov -l ga $user userPassword | 
 
 ### 2. 새로운 메일 서버에 계정 정보 로드
 - 백업 디렉토리 생성
-```shell
+```
 # mkdir -p /migration/zimbra
 # chmod -R 777 /migration/zimbra
 # chown -R zimbra:zimbra /migration/zimbra
 # su - zimbra
 ```
 - 백업한 현재 메일 서버 계정 정보 복사
-```shell
+```
 $ cd /migration/zimbra
 $ scp -rp zimbra@xxx.xxx.xxx.xxx:/migration/zimbra/* . (-P 포트번호)
 ```
 - 계정 정보 로드 shell 생성
-```shell
+```
 $ mkdir -p /migration/zimbra/scripts
 $ cd /migration/zimbra/scripts
 $ vi restore_accounts.sh
@@ -231,16 +231,16 @@ zmprov ma $i userPassword "$shadowpass"
 
 ## 재부팅 후 zimbra 실행 안되는 경우 (완벽한 해결법은 아닌듯)
 - "/var/log/messages"나 "/var/log/secure"에서 아래 내용 확인 (grep 등 활용)
-```shell
+```
 /etc/rc.d/init.d/zimbra: line 41: /usr/bin/su: Permission denied
 ```
 - SELINUX를 disabled 설정 후 재부팅해서 zimbra 정상 실행 확인
-```shell
+```
 # vi /etc/selinux/config
 SELINUX=disabled
 ```
 - SELINUX 다시 활성화 후 재부팅하여 zimbra 정상 실행 확인
-```shell
+```
 # vi /etc/selinux/config
 SELINUX=enforcing
 ```
@@ -257,36 +257,36 @@ SELINUX=enforcing
 - 기존 DNS(A Type)를 새로운 메일 서버 IP로 변경
 - 구 메일 서버에 접속 및 유지를 위해 DNS(A Type) 추가 (ex. mail2.xxxx.co.kr, 등)
 - 새로운 메일 서버와 구 메일 서버에서 zimbra 중지 및 확인
-```shell
+```
 $ su - zimbra
 $ zmcontrol stop
 $ ps -ef | grep -i zimbra
 $ kill -9 <pid>
 ```
 - 각 서버의 변경된 도메인으로 호스트 파일 수정
-```shell
+```
 # vi /etc/hosts
   => IP주소 mail.xxxx.co.kr mail
 ```
 - 각 서버의 HOSTNAME 변경
-```shell
+```
 # hostnamectl set-hostname mail.xxxx.co.kr
 # hostname
 ```
 - CentOS 6.3 기준 HOSTNAME 변경
-```shell
+```
 # hostname mail.xxxx.co.kr
 # vi /etc/sysconfig/network
 # /etc/init.d/network restart
 ```
 - Zimbra의 SERVER NAME 변경
-```shell
+```
 $ /opt/zimbra/libexec/zmsetservername -n mail.xxxx.co.kr
 $ zmhostname
 $ zmcontrol stop
 ```
 - zimbra 시작
-```shell
+```
 $ su - zimbra
 $ zmcontrol start
 ```
