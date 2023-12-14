@@ -20,13 +20,13 @@
 - home 영역의 파티션을 줄이거나 삭제 후 root 영역 확장하는 방식으로 해결
 - 참고 : https://nakanara.tistory.com/261
 - LVM 상태 확인
-```shell
+```
 # lvdisplay
 ```
 - 작업 전 홈 디렉토리 위치가 /home 사용하는 계정 모두 로그아웃 및 재부팅이 필요할 수 있음
 ### 1. 축소 및 확장
 - XFS 파일시스템이면 불가능
-```shell
+```
 # umount /home
 # lvreduce -r -L 100G /dev/mapper/rl-home 
 # lvresize -r -l+100%FREE /dev/mapper/rl-root
@@ -35,33 +35,33 @@
 ```
 ### 2. 불륨 삭제 후 새로 생성
 - 필요한 경우 홈 디렉토리 백업
-```shell
+```
 # tar -zcvf /home.tar.gz -C /home 
 ```
 - /home 불륨 삭제
-```shell
+```
 # umount /dev/mapper/rl-home
 # lvremove /dev/mapper/rl-home
 ```
 - /home 불륨 생성, 포맷, 마운트 (생략하면 삭제한 불륨 전체를 root 확장 가능)
-```shell
+```
 # lvcreate -L 100G
 # mkfs.xfs /dev/mapper/rl-home
 # mount /dev/mapper/rl-home /home
 ```
 - root 확장
-```shell
+```
 # lvextend -r -l +100%FREE /dev/mapper/rl-root
 # df -h
 ```
 - 백업시 /home 디렉토리 복구
-```shell
+```
 #  tar -zxvf /home.tar.gz -C /home
 ```
 <br>
 
 ## 리눅스 서버 웹 콘솔 사용
-```shell
+```
 # systemctl enable --now cockpit.socket
 # systemctl disable --now cockpit.socket
 ```
@@ -70,12 +70,12 @@
 <br>
 
 ## 노트북, 리눅스 조합 크램쉘 모드 설정
-```shell
+```
 # vi /etc/systemd/logind.conf
 ```
 - "HandleLidSwitch" 항목의 주석을 제거하고 값을 ignore로 변경
 - 서비스 재시작
-```shell
+```
 # systemctl restart systemd-logind
 ```
 <br>
