@@ -6,11 +6,11 @@ LINUX 서버의 정보 및 상태를 확인하기위해 필요한 명령어 리�
 
 ## LINUX 제한 설정값 확인 ulimit (user limit)
 - soft ulimit
-```shell
+```
 $ ulimit -a
 ```
 - hard ulimit
-```shell
+```
 $ ulimit -aH
 ```
 - [core file size] : 코어파일의 최대크기
@@ -36,17 +36,17 @@ $ hostnamectl
 <br>
 
 ## LINUX 커널 버전 확인
-```shell
+```
 $ uname -a
 ```
 <br>
 
 ## 메모리 확인
-```shell
+```
 $ cat /proc/meminfo | grep Mem
 ```
 또는
-```shell
+```
 $ free -h
 ```
 - [total] : 설치된 총 메모리 크기 / 설정된 스왑 총 크기
@@ -60,13 +60,13 @@ $ free -h
 <br>
 
 ## 디스크 확인 
-```shell
+```
 $ df -h
 ```
 <br>
 
 ## 파일 및 디렉토리 용량 확인
-```shell
+```
 $ du -h "파일"
 $ du -hs "디렉토리" 
 ```
