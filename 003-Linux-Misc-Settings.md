@@ -8,7 +8,7 @@
 - XShell 구버전을 사용하여 LINUX 서버에 SSH 로그인시 "key exchange" 오류
 - RHEL 8, CentOS 8 이후부터 변경
 - 터미널 프로그램을 최신 버전 혹은 대응가능한 버전으로 업그레이드 권장
-```shell
+```
 # update-crypto-policies --set LEGACY
 ```
 - 참고 : https://access.redhat.com/documentation/ko-kr/red_hat_enterprise_linux/8/html/security_hardening/switching-the-system-wide-crypto-policy-to-mode-compatible-with-previous-systems_using-the-system-wide-cryptographic-policies
