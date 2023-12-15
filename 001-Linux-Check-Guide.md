@@ -31,13 +31,36 @@ $ cat /etc/redhat-release
 ```
 또는
 ```shell
-$ hostnamectl 
+$ hostnamectl
 ```
 <br>
 
 ## LINUX 커널 버전 확인
 ```
 $ uname -a
+```
+<br>
+
+## CPU 사용량 또는 코어별 사용량 확인
+```shell
+# 명령어 대신 명령어 라인 출력
+$ top -c
+
+# 모든 개별 스레드 출력
+$ top -cH
+```
+- 리눅스에서는 기본적으로 top 명령어로 확인 가능하나 코어별 사용량 확인은 불가능하다.
+- 개별 코어의 사용량 확인을 위해 "sysstat" 패키지 설치
+```shell
+$ yum install sysstat
+```
+- 설치 후 "mpstat"로 확인 가능
+```shell
+$ mpstat -P ALL
+
+# 1초마다 갱신
+# 재출력이 아닌 재실행으로 출력창의 페이지 증가함
+$ mpstat -P ALL 1
 ```
 <br>
 
@@ -59,7 +82,7 @@ $ free -h
 - [available] : swapping 없이 새로운 프로세스에서 할당 가능한 메모리의 예상 크기. (예전의 -/+ buffers/cache이 사라지고 새로 생긴 컬럼)
 <br>
 
-## 디스크 확인 
+## 디스크 확인
 ```
 $ df -h
 ```
@@ -68,6 +91,6 @@ $ df -h
 ## 파일 및 디렉토리 용량 확인
 ```
 $ du -h "파일"
-$ du -hs "디렉토리" 
+$ du -hs "디렉토리"
 ```
 <br><br>
