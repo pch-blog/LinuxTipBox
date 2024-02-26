@@ -93,4 +93,17 @@ $ df -h
 $ du -h "파일"
 $ du -hs "디렉토리"
 ```
-<br><br>
+<br>
+
+## 부팅 시간
+- 부팅 후 시간
+```
+$ uptime
+```
+- 전체 부팅 시간 확인 (현재 linux가 systemd를 사용할 때 가능한 명령)
+```
+# 전체 부팅 시간 확인
+$ systemd-analyze
+# 부팅 프로세스 분석
+$ systemd-analyze blame
+```
