@@ -73,7 +73,7 @@
 - 방화벽 포트 허용 및 확인
 ```
 # firewall-cmd --permanent --zone=public --add-port=1234/tcp
-# fierwall-cmd --reload; firewall-cmd --list-all
+# firewall-cmd --reload; firewall-cmd --list-all
 ```
 ### 3. 서비스 재시작
 ```
