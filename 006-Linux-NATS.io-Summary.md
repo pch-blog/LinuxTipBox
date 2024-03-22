@@ -77,8 +77,8 @@ $ sudo make install
 ```
 ### TLS ON, Streaming ON  상태 설치
 - CentOS 8, RHEL 8.9 설치
-- <span style="color:red"><b>CentOS 7 기준 protobu-c 버전이 낮아서 nats.c 컴파일에 문제가 있음</b></span>
-- <span style="color:red"><b>CentOS 7 기준 nats가 요구하는 protobu-c 최소 요구 버전 및 최신 버전 컴파일에 문제가 있음 </b></span>
+- <span style="color:red"><b>CentOS 7 기준 protobuf-c 버전이 낮아서 nats.c 컴파일에 문제가 있음</b></span>
+- <span style="color:red"><b>CentOS 7 기준 nats가 요구하는 protobuf-c 최소 요구 버전 및 최신 버전 컴파일에 문제가 있음 </b></span>
 - 필요한 패키지 설치 및 업데이트
 ```shell
 $ sudo yum -y install protobuf protobuf-c protobuf-c-devel
