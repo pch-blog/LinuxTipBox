@@ -1,8 +1,6 @@
 # 001-Linux-Check-Guide.md
-~~~
-LINUX 서버의 정보 및 상태를 확인하기위해 필요한 명령어 리스트
-~~~
-<br>
+- LINUX 서버의 정보 및 상태를 확인하기위해 필요한 명령어 리스트
+<br><br>
 
 ## LINUX 제한 설정값 확인 ulimit (user limit)
 - soft ulimit

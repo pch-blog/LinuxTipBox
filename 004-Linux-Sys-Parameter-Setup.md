@@ -1,7 +1,7 @@
 # 004-Linux-Sys-Parameter-Setup.md
-<br>
+<br><br>
 
-## ulimit : Open Files 설정 
+## ulimit : Open Files 설정
 - unlimited로 설정하면 부팅 불가, SSH 연결 불가, 연결 상태의 터미널에서 다른 계정 로그인 불가(root 포함)
 - 즉시 설정
 ```

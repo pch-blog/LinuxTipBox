@@ -1,7 +1,4 @@
 # 003-Linux-Misc-Settings.md
-~~~
-기타 설정
-~~~
 <br>
 
 ## 시스템 전체 암호화 정책을 이전 릴리스와 호환되는 모드로 전환
@@ -28,7 +25,7 @@
 - XFS 파일시스템이면 불가능
 ```
 # umount /home
-# lvreduce -r -L 100G /dev/mapper/rl-home 
+# lvreduce -r -L 100G /dev/mapper/rl-home
 # lvresize -r -l+100%FREE /dev/mapper/rl-root
 # mount /dev/mapper/rl-home /home
 # df -h
@@ -36,7 +33,7 @@
 ### 2. 불륨 삭제 후 새로 생성
 - 필요한 경우 홈 디렉토리 백업
 ```
-# tar -zcvf /home.tar.gz -C /home 
+# tar -zcvf /home.tar.gz -C /home
 ```
 - /home 불륨 삭제
 ```

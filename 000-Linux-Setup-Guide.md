@@ -1,12 +1,10 @@
 # 000-Linux-Setup-Guide.md
-~~~
 - CentOS 또는 RHEL 계열의 LINUX 배포판 설치 후 기본 설정 리스트
 - Rocky Linux 8.8, Rocky Linux 9.2 설치 후 설정 과정을 정리한 내용임
-~~~
-<br>
+<br><br>
 
 ## Network 설정
-- "nmtui"로 IP 설정 및 인터페이스 활성화  
+- "nmtui"로 IP 설정 및 인터페이스 활성화
 ```
 # nmtui
 ```

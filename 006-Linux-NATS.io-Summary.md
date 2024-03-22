@@ -1,10 +1,10 @@
 # NATS.io Summary
-0. [Official NATS Documentation](https://docs.nats.io)<br>
-1. [Legacy NATS Documentation](https://nats-io.gitbook.io/legacy-nats-docs/nats-account-server)<br>
-2. [NATS.io 서버 설치 및 환경설정](#natsio-서버-설치-및-환경설정)<br>
-3. [NATS.io C클라이언트 설치 및 개발 관련 설명](#natsio-c클라이언트-설치-및-개발-관련-설명)<br>
-4. [NATS.io 클러스터링](#natsio-클러스터링)<br>
-<br>
+- [Official NATS Documentation](https://docs.nats.io)<br>
+- [Legacy NATS Documentation](https://nats-io.gitbook.io/legacy-nats-docs/nats-account-server)<br>
+- [NATS.io 서버 설치 및 환경설정](#natsio-서버-설치-및-환경설정)<br>
+- [NATS.io C클라이언트 설치 및 개발 관련 설명](#natsio-c클라이언트-설치-및-개발-관련-설명)<br>
+- [NATS.io 클러스터링](#natsio-클러스터링)<br>
+<br><br>
 
 ## NATS.io 서버 설치 및 환경설정
 ### NATS.io 필요한 버전 RPM 다운로드 및 설치

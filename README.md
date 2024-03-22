@@ -1,2 +1,2 @@
 # LinuxTipBox
-ㅋ
+Linux Tip Summary!

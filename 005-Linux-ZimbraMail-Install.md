@@ -1,11 +1,9 @@
 # 005-Linux-ZimbraMail-Install.md
-~~~
 - Zimbra 메일 서버 설치 과정
 - OS : Rocky Linux 8.8
 - Zimbra Mail Server : Zimbra Collaboration Open Source(zcs-8.8.15)
 - 현재 메일 서버에서 새로운 메일 서버로 마이그레이션 진행하지 않고 구축하는 과정정
-~~~
-<br>
+<br><br>
 
 ## 설치 조건
 - 최소 사양으로 4코어 이상 CPU, 4GB 이상 메모리
@@ -15,7 +13,7 @@
 ## Linux 설치 후 기본 설정
 - 기본 설정 : https://github.com/namoo33444/LinuxTipBox/blob/main/000-Linux-Setup-Guide.md
 - root 파티션 용량 늘리기 : https://github.com/PCH-GitHub/LinuxTipBox/blob/main/003-Linux-Misc-Settings.md#root-%ED%8C%8C%ED%8B%B0%EC%85%98-%EC%9A%A9%EB%9F%89-%EB%8A%98%EB%A6%AC%EA%B8%B0
-- 상황에 따라 /opt 영역에 대한 파티션 생성 및 마운트 
+- 상황에 따라 /opt 영역에 대한 파티션 생성 및 마운트
 <br>
 
 ## 도메인 업체 네임서비스 등록
@@ -70,13 +68,13 @@ $ tar -zxvf zcs-8.8.15_GA_4362.RHEL8_64.20220721104405.tgz
 - 대부분 Y 혹 Enter로 진행하며 필요에 따라 기능을 골라서 설치
 - 설치 중 도메인 이름 변경 관련하여 설정 필요
 ```
-Change domain name? [Yes] Y 
+Change domain name? [Yes] Y
 Create domain: [mail.xxxx.co.kr] xxxx.co.kr
 ```
 - 다음 진행시 관리자 계정 비밀번호 설정 필요
 ```
 Port conflicts detected! - Press Enter/Return key to continue [Enter]
-Address unconfigured (**) items  (? - help) 7 
+Address unconfigured (**) items  (? - help) 7
 Select, or 'r' for previous menu [r] 4
 Password for admin@xxxx.pe.kr (min 6 characters): [sjExTRKsa] [비밀번호 입력]
 ```
@@ -114,7 +112,7 @@ $ exit
 # ps -ef | grep -i zimbra
 # kill -9 <pid>
 ```
-- 설치 shell에 인자로 "-u" 입력 후 실행 
+- 설치 shell에 인자로 "-u" 입력 후 실행
 ```
 # cd zcs-8.8.15_GA_4362.RHEL8_64.20220721104405
 # ./install.sh -u
@@ -297,7 +295,7 @@ $ zmcontrol start
 
 ## 각각 사용자의 로컬PC를 통한 백업 및 로드 과정
 ### 1. 내보내기
-- 구 메일서버 웹페이지 접속 
+- 구 메일서버 웹페이지 접속
 - 상단 메뉴 "기본 설정" -> 왼쪽 메뉴 "가져오기/내보내기"
 - 오른쪽 페이지 내보내기에서 "내보내기" 클릭 후 다운로드 및 완료 확인
 ### 2. 가져오기
