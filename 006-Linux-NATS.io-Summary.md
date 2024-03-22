@@ -101,6 +101,17 @@ $ cmake .. -DNATS_BUILD_STREAMING=ON \
 -DNATS_PROTOBUF_LIBRARY=/usr/lib64/libprotobuf-c.so \
 -DNATS_PROTOBUF_INCLUDE_DIR=/usr/include/protobuf-c
 ```
+### 클라이언트 컴파일 Makefile에 라이브러리 추가
+```make
+# 동적 라이브러리
+NATSLIBS = -lnats
+# 정적 라이브러리
+NATSLIBS = -lnats_static
+# Streaming ON
+NATSLIBS = -lnats_static -lprotobuf-c
+# TLS ON
+NATSLIBS = -lnats_static  -lssl -lcrypto
+```
 ### 오류1. CMAKE(Cross-platform make system) 버전이 낮으면 버전 업데이트 진행
 - CentOS 7, RHEL 7.9
 ```shell
@@ -125,18 +136,6 @@ $ git clone https://github.com/protobuf-c/protobuf-c.git
 $ cmake ..  -D....... -DNATS_PROTOBUF_INCLUDE_DIR="github에서 protobuf-c를 clone한 경로"
 ```
 <br>
-
-### 클라이언트 컴파일 Makefile에 추가
-```make
-# 동적 라이브러리
-NATSLIBS = -lnats
-# 정적 라이브러리
-NATSLIBS = -lnats_static
-# Streaming ON
-NATSLIBS = -lnats_static -lprotobuf-c
-# TLS ON
-NATSLIBS = -lnats_static  -lssl -lcrypto
-```
 
 ## NATS.io C클라이언트 개발 관련 설명
 ### 클라이언트 개발 기타 설명
