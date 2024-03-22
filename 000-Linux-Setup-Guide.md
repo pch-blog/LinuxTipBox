@@ -41,13 +41,17 @@
 - "pool kr.pool.ntp.org iburst" 추가 후 저장
 ### 3. 서비스 재시작
 ```
-#systemctl stop chronyd
-#systemctl start chronyd
+// chrondy 허용
+# systemctl enable chronyd
+
+// chrondy 재시작
+# systemctl stop chronyd
+# systemctl start chronyd
 ```
 ### 4. 메인보드 시간 동기화
 ```
-#hwclock -w
-#hwclock -v
+# hwclock -w
+# hwclock -v
 ```
 <br>
 
@@ -67,7 +71,7 @@
 - 방화벽 포트 허용 및 확인
 ```
 # firewall-cmd --permanent --zone=public --add-port=1234/tcp
-# fierwall-cmd --reload; firewall-cmd --list-all
+# firewall-cmd --reload; firewall-cmd --list-all
 ```
 ### 3. 서비스 재시작
 ```
