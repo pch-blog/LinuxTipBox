@@ -45,7 +45,7 @@ $ sudo vi /etc/locale.conf
 $ locale
 ```
 ### 4. 오류 - Rocky Linux 9, RHEL 9 에서 한글 깨짐 현상
-- 특별한 문제가 아니라면 Rocky Linux 8, RHEL 8 사용
+- <b>특별한 문제가 아니라면 Rocky Linux 8, RHEL 8 사용</b>
 - "localectl list-locales | grep ko" 명령어에서 ko_KR.euckr이 안나옴
 - gcc로 아래 내용이 포함된 코드를 컴파일하면 오류 발생
 ```c
