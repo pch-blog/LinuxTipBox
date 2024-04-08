@@ -24,7 +24,7 @@ $ sudo dnf update
 ```
 <br>
 
-## 언어 인코딩 설정
+## 언어 인코딩 설정 (EUC-KR)
 ### 1. 한글 언어 패키지 설치
 ```shell
 $ sudo yum install glibc-langpack-ko
