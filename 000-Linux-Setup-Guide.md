@@ -8,6 +8,7 @@
 ```shell
 $ sudo nmtui
 ```
+- <b>상황에 따라 IPv4 구성을 "Automatic", "Manual" 설정 확인</b>
 - "nmtui"가 없을 경우 설치
 ```shell
 $ sudo yum install NetworkManager-tui
