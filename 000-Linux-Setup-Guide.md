@@ -34,9 +34,6 @@ $ sudo yum install glibc-langpack-ko
 $ locale -a | gpre ko
 $ localectl list-locales | grep ko
 ```
-- Rocky Linux 9.2에서 localectl 명령어에서 나오지 않는 경우 터미널에서 한글 표현을 못 함.
-- vi를 통한 코드내에 한글은 표현
-- Rocky Linux 9.2에서 postgresql의 ecpg 컴파일에 문제 발생
 ### 3. 인코딩 설정
 ```shell
 $ sudo localectl set-locale "LANG=ko_KR.euckr"
@@ -47,6 +44,22 @@ $ sudo vi /etc/locale.conf
 ```shell
 $ locale
 ```
+### 4. 오류 - Rocky Linux 9, RHEL 9 에서 한글 깨짐 현상
+- 특별한 문제가 아니라면 Rocky Linux 8, RHEL 8 사용
+- "localectl list-locales | grep ko" 명령어에서 ko_KR.euckr이 안나옴
+- gcc로 아래 내용이 포함된 코드를 컴파일하면 오류 발생
+```c
+#if 0
+테이블
+#endif
+```
+- 컴파일 옵션 추가로 해결 가능
+```make
+-finput-charset=EUC-KR
+-fexec-charset=EUC-KR
+```
+- <b>컴파일 옵션 추가하면 postgresql의 ecpg 컴파일에 문제 발생</b>
+
 <br>
 
 ## 시간 동기화 (rdate 사용X)
