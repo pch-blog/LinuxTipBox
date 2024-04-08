@@ -58,7 +58,7 @@ $ locale
 -finput-charset=EUC-KR
 -fexec-charset=EUC-KR
 ```
-- <b>컴파일 옵션 추가하면 postgresql의 ecpg 컴파일에 문제 발생</b>
+- <b>컴파일 옵션 추가하면 postgresql의 ecpg 컴파일에 인코딩 변환 문제 발생</b>
 
 <br>
 
