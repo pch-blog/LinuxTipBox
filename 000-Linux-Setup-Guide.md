@@ -25,7 +25,7 @@ $ sudo dnf update
 ```
 <br>
 
-## 언어 인코딩 설정 (EUC-KR)
+## 언어팩 설치 및 시스템 인코딩 설정
 ### 1. 한글 언어 패키지 설치
 ```shell
 $ sudo yum install glibc-langpack-ko
@@ -35,12 +35,13 @@ $ sudo yum install glibc-langpack-ko
 $ locale -a | gpre ko
 $ localectl list-locales | grep ko
 ```
-### 3. 인코딩 설정
+### 3. 시스템 인코딩 설정
 ```shell
-$ sudo localectl set-locale "LANG=ko_KR.euckr"
+$ sudo localectl set-locale "LANG=ko_KR.utf8"
 # 직접 수정
 $ sudo vi /etc/locale.conf
 ```
+- EUC-KR이 필요한 경우 각 계정의 .bash_profile에 export LANG="ko_KR.euckr" 추가
 - 설정 확인
 ```shell
 $ locale
