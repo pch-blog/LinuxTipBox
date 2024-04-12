@@ -304,3 +304,68 @@ $ zmcontrol start
 - 오른쪽 페이지 가져오기에서 내보내기로 다운로드 받은 파일 선택 후 "가져오기" 클릭
 - 완료 팝업 확인
 
+## SSL 인증서 설치 및 설정
+- [zimbra SSL 인증서 설치 및 설정1](https://computingforgeeks.com/secure-zimbra-mail-server-with-letsencrypt-ssl-certificate/)
+- [zimbra SSL 인증서 설치 및 설정2](https://wiki.zimbra.com/wiki/Installing_a_LetsEncrypt_SSL_Certificate)
+- [cerbot 설치](https://www.ckhang.com/blog/2022/install-ssl-on-centos/)
+- 인증서 갱신을 위한 shell 생성
+```shell
+sudo vi letsencrypt_create
+```
+```shell
+#!/bin/bash
+export EMAIL="관리용 메일"
+export ZIMBRA_FQDN=$(hostname -f)
+export LETSENCRYPT_PATH="/etc/letsencrypt/live"
+export ZIMBRA_LETSENCRYPT_PATH="KEY 파일 조작을 위한 임시 경로"
+
+# Key File Create
+certbot certonly --standalone \
+  -d $ZIMBRA_FQDN \
+  --preferred-chain "ISRG Root X1" \
+  --force-renewal \
+  --preferred-challenges http \
+  --agree-tos \
+  -n \
+  -m $EMAIL \
+  --keep-until-expiring \
+  --key-type rsa
+
+# Key File Move And Set Permissions
+if [ ! -d "$ZIMBRA_LETSENCRYPT_PATH" ]; then
+mkdir $ZIMBRA_LETSENCRYPT_PATH
+fi
+cp -fp $LETSENCRYPT_PATH/$ZIMBRA_FQDN/* $ZIMBRA_LETSENCRYPT_PATH/.
+cat $ZIMBRA_LETSENCRYPT_PATH/chain.pem | tee $ZIMBRA_LETSENCRYPT_PATH/zimbra_chain.pem
+wget -O $ZIMBRA_LETSENCRYPT_PATH/ISRG-X1.pem https://letsencrypt.org/certs/isrgrootx1.pem.txt
+cat $ZIMBRA_LETSENCRYPT_PATH/ISRG-X1.pem | tee -a  $ZIMBRA_LETSENCRYPT_PATH/zimbra_chain.pem
+chown -R zimbra:zimbra $ZIMBRA_LETSENCRYPT_PATH/*
+
+# zmcertmgr verifycrt
+su - zimbra -c '/opt/zimbra/bin/zmcertmgr verifycrt comm '$ZIMBRA_LETSENCRYPT_PATH'/privkey.pem '$ZIMBRA_LETSENCRYPT_PATH'/cert.pem '$ZIMBRA_LETSENCRYPT_PATH'/zimbra_chain.pem'
+
+# KEY FILE BACKUP AND NEW KEY FILE COPY
+cp -a /opt/zimbra/ssl/zimbra /opt/zimbra/ssl/zimbra.$(date "+%Y.%m.%d-%H.%M")
+cp -fp $ZIMBRA_LETSENCRYPT_PATH/privkey.pem /opt/zimbra/ssl/zimbra/commercial/commercial.key
+chown -R zimbra:zimbra /opt/zimbra/ssl/zimbra/commercial/commercial.key
+
+# zmcertmgr deploycrt
+su - zimbra -c '/opt/zimbra/bin/zmcertmgr deploycrt comm '$ZIMBRA_LETSENCRYPT_PATH'/cert.pem '$ZIMBRA_LETSENCRYPT_PATH'/zimbra_chain.pem'
+
+# ReStart Zimbra services
+su - zimbra -c "zmcontrol restart"
+
+# Key File Remove
+rm -rf $LETSENCRYPT_PATH/$ZIMBRA_FQDN
+rm -rf $ZIMBRA_LETSENCRYPT_PATH
+```
+```shell
+chmod 775 letsencrypt_create
+```
+- 주마다 실행하도록 crontab에 설정
+```shell
+sudo ln -s /opt/zimbra/ssl/letsencrypt_create /etc/cron.weekly/letsencrypt_zimbra
+ls -l /etc/cron.weekly/
+total 0
+lrwxrwxrwx. 1 root root 34 Apr 12 14:26 letsencrypt_zimbra -> /opt/zimbra/ssl/letsencrypt_create
+```
