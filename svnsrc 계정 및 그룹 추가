@@ -1,0 +1,42 @@
+- root에서 수행
+<br>
+## svn_grp.sh 생성
+```bash
+#!/bin/bash
+
+# 입력 인자 확인
+if [ "$#" -ne 1 ]; then
+    echo "사용법: $0 <username>"
+    exit 1
+fi
+
+# 변수 설정
+USERNAME="$1"
+HOMEDIR="/home/svnsrc"
+GROUPID="svnsrc gid"
+PASSWD="Passwd"
+
+# 사용자 생성 및 홈 디렉토리 설정
+useradd -d "$HOMEDIR" -m "$USERNAME"
+
+# 기본 그룹 설정
+usermod -g "$GROUPID" "$USERNAME"
+
+# 사용자를 그룹에 추가
+usermod -a -G svnsrc "$USERNAME"
+
+# 사용자 passwd: inance2024
+echo "$USERNAME:$PASSWD" | sudo chpasswd
+
+echo "사용자 $USERNAME 생성 및 구성 완료.초기 비밀번호는 "Passwd"입니다."
+```
+
+## svn_grp.sh 실행권한 부여
+```bash
+chmod 775 svn_grp.sh
+```
+
+## 계정 생성 및 그룹 추가
+```bash
+./svn_grp [USER]
+```
