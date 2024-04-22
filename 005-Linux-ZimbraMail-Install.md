@@ -363,7 +363,15 @@ rm -rf $ZIMBRA_LETSENCRYPT_PATH
 ```shell
 chmod 775 letsencrypt_create
 ```
-- 주마다 실행하도록 crontab에 설정
+- 일요일마다 실행
+```shell
+$ sudo crontab -e
+```
+- 내용 추가 후 저장
+```
+0 0 * * 0 /opt/zimbra/ssl/letsencrypt_create
+```
+- ~~주마다 실행하도록 crontab에 설정~~
 ```shell
 sudo ln -s /opt/zimbra/ssl/letsencrypt_create /etc/cron.weekly/letsencrypt_zimbra
 ls -l /etc/cron.weekly/
