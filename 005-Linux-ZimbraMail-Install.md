@@ -193,6 +193,11 @@ $ cd /migration/zimbra/passwords
 $ for user in `cat ../accounts/users.txt`; do zmprov -l ga $user userPassword | grep userPassword: | awk '{ print $2}' | tee -a $user.shadow; done
 ```
 
+- 메일주소와 이름 출력
+```
+zmprov -l gaa | xargs -I {} zmprov -l ga {} displayName | tee -a users.txt
+```
+
 ### 2. 새로운 메일 서버에 계정 정보 로드
 - 백업 디렉토리 생성
 ```
