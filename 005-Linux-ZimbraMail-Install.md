@@ -193,6 +193,11 @@ $ cd /migration/zimbra/passwords
 $ for user in `cat ../accounts/users.txt`; do zmprov -l ga $user userPassword | grep userPassword: | awk '{ print $2}' | tee -a $user.shadow; done
 ```
 
+- 메일주소와 이름 출력
+```
+zmprov -l gaa | xargs -I {} zmprov -l ga {} displayName | tee -a users.txt
+```
+
 ### 2. 새로운 메일 서버에 계정 정보 로드
 - 백업 디렉토리 생성
 ```
@@ -298,7 +303,7 @@ $ grep "도메인 키워드" */* | grep -v "현재 도메인 키워드"
 $ grep "도메인 키워드" */*/* | grep -v "현재 도메인 키워드"
 ```
 - 웹페이지 접속 확인
-- 자체 인증서 관리자 페이지에서 다시 인스톨
+- ~~자체 인증서 관리자 페이지에서 다시 인스톨~~
 <br>
 
 ## 각각 사용자의 로컬PC를 통한 백업 및 로드 과정
@@ -370,7 +375,15 @@ rm -rf $ZIMBRA_LETSENCRYPT_PATH
 ```shell
 chmod 775 letsencrypt_create
 ```
-- 주마다 실행하도록 crontab에 설정
+- 일요일마다 실행
+```shell
+$ sudo crontab -e
+```
+- 내용 추가 후 저장
+```
+0 0 * * 0 /opt/zimbra/ssl/letsencrypt_create
+```
+- ~~주마다 실행하도록 crontab에 설정~~
 ```shell
 sudo ln -s /opt/zimbra/ssl/letsencrypt_create /etc/cron.weekly/letsencrypt_zimbra
 ls -l /etc/cron.weekly/
