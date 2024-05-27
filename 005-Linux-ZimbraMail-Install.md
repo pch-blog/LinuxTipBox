@@ -327,14 +327,22 @@ sudo vi letsencrypt_create
 ```
 ```shell
 #!/bin/bash
+# ZIMBRA
 export EMAIL="관리용 메일"
-export ZIMBRA_FQDN=$(hostname -f)
-export LETSENCRYPT_PATH="/etc/letsencrypt/live"
-export ZIMBRA_LETSENCRYPT_PATH="KEY 파일 조작을 위한 임시 경로"
+export ZIMBRA_DOMAIN=$(hostname -f)
+export ZIMBRA_SSL_PATH="/opt/zimbra/ssl/letsencrypt"
+# LETSENCRYPT
+export LETSENCRYPT_LIVE_PATH="/etc/letsencrypt/live"
+export LETSENCRYPT_RENEW_PATH="/etc/letsencrypt/renewal"
+export LETSENCRYPT_ARCHIVE_PATH="/etc/letsencrypt/archive"
+
+# Deleting existing certificates
+rm -rf $LETSENCRYPT_RENEW_PATH/$ZIMBRA_DOMAIN*
+rm -rf $LETSENCRYPT_ARCHIVE_PATH/$ZIMBRA_DOMAIN*
 
 # Key File Create
 certbot certonly --standalone \
-  -d $ZIMBRA_FQDN \
+  -d $ZIMBRA_DOMAIN \
   --preferred-chain "ISRG Root X1" \
   --force-renewal \
   --preferred-challenges http \
@@ -345,32 +353,32 @@ certbot certonly --standalone \
   --key-type rsa
 
 # Key File Move And Set Permissions
-if [ ! -d "$ZIMBRA_LETSENCRYPT_PATH" ]; then
-mkdir $ZIMBRA_LETSENCRYPT_PATH
+if [ ! -d "$ZIMBRA_SSL_PATH" ]; then
+mkdir $ZIMBRA_SSL_PATH
 fi
-cp -fp $LETSENCRYPT_PATH/$ZIMBRA_FQDN/* $ZIMBRA_LETSENCRYPT_PATH/.
-cat $ZIMBRA_LETSENCRYPT_PATH/chain.pem | tee $ZIMBRA_LETSENCRYPT_PATH/zimbra_chain.pem
-wget -O $ZIMBRA_LETSENCRYPT_PATH/ISRG-X1.pem https://letsencrypt.org/certs/isrgrootx1.pem.txt
-cat $ZIMBRA_LETSENCRYPT_PATH/ISRG-X1.pem | tee -a  $ZIMBRA_LETSENCRYPT_PATH/zimbra_chain.pem
-chown -R zimbra:zimbra $ZIMBRA_LETSENCRYPT_PATH/*
+cp -fp $LETSENCRYPT_LIVE_PATH/$ZIMBRA_DOMAIN/* $ZIMBRA_SSL_PATH/.
+cat $ZIMBRA_SSL_PATH/chain.pem | tee $ZIMBRA_SSL_PATH/zimbra_chain.pem
+wget -O $ZIMBRA_SSL_PATH/ISRG-X1.pem https://letsencrypt.org/certs/isrgrootx1.pem.txt
+cat $ZIMBRA_SSL_PATH/ISRG-X1.pem | tee -a  $ZIMBRA_SSL_PATH/zimbra_chain.pem
+chown -R zimbra:zimbra $ZIMBRA_SSL_PATH/*
 
 # zmcertmgr verifycrt
-su - zimbra -c '/opt/zimbra/bin/zmcertmgr verifycrt comm '$ZIMBRA_LETSENCRYPT_PATH'/privkey.pem '$ZIMBRA_LETSENCRYPT_PATH'/cert.pem '$ZIMBRA_LETSENCRYPT_PATH'/zimbra_chain.pem'
+su - zimbra -c '/opt/zimbra/bin/zmcertmgr verifycrt comm '$ZIMBRA_SSL_PATH'/privkey.pem '$ZIMBRA_SSL_PATH'/cert.pem '$ZIMBRA_SSL_PATH'/zimbra_chain.pem'
 
 # KEY FILE BACKUP AND NEW KEY FILE COPY
 cp -a /opt/zimbra/ssl/zimbra /opt/zimbra/ssl/zimbra.$(date "+%Y.%m.%d-%H.%M")
-cp -fp $ZIMBRA_LETSENCRYPT_PATH/privkey.pem /opt/zimbra/ssl/zimbra/commercial/commercial.key
+cp -fp $ZIMBRA_SSL_PATH/privkey.pem /opt/zimbra/ssl/zimbra/commercial/commercial.key
 chown -R zimbra:zimbra /opt/zimbra/ssl/zimbra/commercial/commercial.key
 
 # zmcertmgr deploycrt
-su - zimbra -c '/opt/zimbra/bin/zmcertmgr deploycrt comm '$ZIMBRA_LETSENCRYPT_PATH'/cert.pem '$ZIMBRA_LETSENCRYPT_PATH'/zimbra_chain.pem'
+su - zimbra -c '/opt/zimbra/bin/zmcertmgr deploycrt comm '$ZIMBRA_SSL_PATH'/cert.pem '$ZIMBRA_SSL_PATH'/zimbra_chain.pem'
 
 # ReStart Zimbra services
 su - zimbra -c "zmcontrol restart"
 
 # Key File Remove
-rm -rf $LETSENCRYPT_PATH/$ZIMBRA_FQDN
-rm -rf $ZIMBRA_LETSENCRYPT_PATH
+rm -rf $LETSENCRYPT_LIVE_PATH/$ZIMBRA_DOMAIN*
+rm -rf $ZIMBRA_SSL_PATH
 ```
 ```shell
 chmod 775 letsencrypt_create
@@ -381,8 +389,9 @@ $ sudo crontab -e
 ```
 - 내용 추가 후 저장
 ```
-0 0 * * 0 /opt/zimbra/ssl/letsencrypt_create
+0 01 * * 6 root /opt/zimbra/ssl/letsencrypt_create >> /tmp/letsencrypt_create.log 2>&1
 ```
+
 - ~~주마다 실행하도록 crontab에 설정~~
 ```shell
 sudo ln -s /opt/zimbra/ssl/letsencrypt_create /etc/cron.weekly/letsencrypt_zimbra
